@@ -13,7 +13,6 @@ const staticCache = require('koa-static-cache')
 const config = require('./config/config')
 const routers = require('./routers/index')
 const logPrint = require('./middlewares/log_print');  //日志输出
-const response_formatter = require('./middlewares/response_formatter');  // 响应报文格式化
 
 const app = new Koa()
 
@@ -60,9 +59,6 @@ app.use(views(path.join(__dirname, './views'), {
 // log文件输出
 app.use(logPrint);
 
-//仅对 '/api' 开头的url进行格式化处理，在添加路由之前调用
-app.use(response_formatter('^/api'));
-
 // 初始化路由中间件
 app.use(routers.routes())
    .use(routers.allowedMethods())
@@ -72,9 +68,5 @@ app.on('error', function(err, ctx){
     console.log(err)
     logger.error('server error', err, ctx);
 });
-
-// // 监听启动端口
-// app.listen( config.port )
-// console.log(`the server is start at port ${config.port}`)
 
 module.exports = app;
