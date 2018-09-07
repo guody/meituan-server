@@ -1,5 +1,5 @@
 {
-  "name": "student-server",
+  "name": "meituan-server",
   "version": "1.0.0",
   "description": "基于koa2的nodejs server",
   "main": "app.js",
