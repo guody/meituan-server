@@ -6,6 +6,15 @@ const ApiErrorNames = require('../error/ApiErrorNames');
 const userService = require('../service/userService.js')
 
 /**
+ * 查询所有用户
+ */
+
+let findAllUser = async (ctx, next) => {
+    let result = await userService.findAllUser();
+    ctx.body = result
+};
+
+/**
  * 用户登陆
  */
 let login = async (ctx, next) => {
@@ -25,6 +34,7 @@ let regist = async (ctx, next) => {
 
 
 module.exports = {
+    findAllUser,
     login,
     regist
 };

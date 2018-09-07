@@ -7,6 +7,20 @@ const Result = require('../entity/Result');
 const Util = require('../utils/util');
 
 /**
+ * 查询所有用户
+ */
+let findAllUser = async () => {
+    let user = await userDao.findAllUser();
+    //把results对象转为字符串，去掉RowDataPacket
+    user = JSON.stringify(user);
+    //把results字符串转为json对象  格式---[{}]
+    user = JSON.parse(user);
+    return new Result('0000','查询成功',user); 
+    
+    
+}
+
+/**
  * 用户登陆
  */
 let checkLogin = async (value) => {
@@ -78,5 +92,6 @@ let addUser = async (value)=> {
 
 module.exports = {
     checkLogin,
-    addUser
+    addUser,
+    findAllUser
 };

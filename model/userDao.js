@@ -3,6 +3,13 @@
  */
 const { operateDB } = require('../utils/mysql')
 
+//查询所有用户
+let findAllUser = async () => {
+    let _sql =  `select * from users`
+    let users = await operateDB(_sql);
+    return users;
+};
+
 // 根据用户名查询
 let findUserByName = async (username) => {
     let _sql =  `select * from users where username="${username}"`
@@ -27,7 +34,8 @@ let updateUserToken = async (value) => {
 module.exports = {
     findUserByName,
     addUserData,
-    updateUserToken
+    updateUserToken,
+    findAllUser
 };
 
 
