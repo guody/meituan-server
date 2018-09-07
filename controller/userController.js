@@ -5,28 +5,26 @@ const ApiError = require('../error/ApiError');
 const ApiErrorNames = require('../error/ApiErrorNames');
 const userService = require('../service/userService.js')
 
-let getUserDataById = async (ctx, next) => {
-    let level = ctx.query.level;
-    let nick = ctx.query.nick;
-
-    let value =[level,nick]   
-    let userInfo = await userService.getUserById(value);
-    // 用户不存在
-    if(!userInfo){
-        throw new ApiError(ApiErrorNames.USER_NOT_EXIST);
-    }
-    ctx.body = userInfo
+/**
+ * 用户登陆
+ */
+let login = async (ctx, next) => {
+    let userData = ctx.request.body;
+    let result = await userService.checkLogin(userData);
+    ctx.body = result
 };
 
-
-
-let saveUserinfo = (ctx, next) => {
-    const requestString = ctx.data;
-    //TODO数据处理
-    Console.log(requestString);
+/**
+ * 注册用户
+ */
+let regist = async (ctx, next) => {
+    let userData = ctx.request.body;
+    let result = await userService.addUser(userData);
+    ctx.body = result
 };
+
 
 module.exports = {
-    'getUserDataById': getUserDataById,
-    'saveUserinfo': saveUserinfo
+    login,
+    regist
 };

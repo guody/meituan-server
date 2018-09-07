@@ -3,19 +3,31 @@
  */
 const { operateDB } = require('../utils/mysql')
 
-// 查询用户
-var getUserById = async (value) => {
-    let _sql =  `select * from user where level=? and nick=?`
-    let user = await operateDB(_sql,value);
-    if (user) {
-        return user;
-    } else {
-        return null;
-    }
+// 根据用户名查询
+let findUserByName = async (username) => {
+    let _sql =  `select * from users where username="${username}"`
+    let user = await operateDB(_sql);
+    return user;
 };
 
+// 保存用户
+let addUserData = async (value) => {
+    let _sql =  `insert into users(userid,username,password) values(?,?,?)`
+    let result = await operateDB(_sql,value);
+    return result;
+};
+
+//更新token
+let updateUserToken = async (value) => {
+    let _sql =  `update users set token=? where userid=?`
+    let result = await operateDB(_sql,value);
+    return result;   
+}
+
 module.exports = {
-    getUserById : getUserById
+    findUserByName,
+    addUserData,
+    updateUserToken
 };
 
 
