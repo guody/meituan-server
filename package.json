@@ -10,6 +10,8 @@
   "author": "gxd",
   "license": "ISC",
   "dependencies": {
+    "js-base64": "^2.4.9",
+    "jsonwebtoken": "^8.3.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-convert": "^1.2.0",
@@ -21,10 +23,12 @@
     "koa-static": "^5.0.0",
     "koa-static-cache": "^5.1.2",
     "koa-views": "^6.1.4",
+    "koa2-cors": "^2.0.6",
     "log4js": "^3.0.5",
     "md5": "^2.2.1",
     "mysql": "^2.16.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {}
 }

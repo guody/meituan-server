@@ -10,7 +10,14 @@ const userService = require('../service/userService.js')
  */
 
 let findAllUser = async (ctx, next) => {
+    console.log(ctx)
     let result = await userService.findAllUser();
+    ctx.body = result
+};
+
+let getUser = async (ctx, next) => {
+    let userId = '8ecd2da0-b581-11e8-ab2d-6d36cdb19a3c'
+    let result = await userService.findUserById(userId);
     ctx.body = result
 };
 
@@ -36,5 +43,6 @@ let regist = async (ctx, next) => {
 module.exports = {
     findAllUser,
     login,
-    regist
+    regist,
+    getUser
 };

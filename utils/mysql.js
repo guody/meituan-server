@@ -21,7 +21,6 @@ let operateDB = function( sql, values ) {
                 console.log("-----Get connection from mysql pool failed-------");
                 reject( err )
             } else {
-                console.log("-----Get connection from mysql pool succeess-------");
                 connection.query(sql, values, ( err, rows) => {
                     if ( err ) {
                         reject( err )

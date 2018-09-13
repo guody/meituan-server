@@ -17,6 +17,13 @@ let findUserByName = async (username) => {
     return user;
 };
 
+// 根据userid查询
+let findUserById = async (userid) => {
+    let _sql =  `select * from users where userid="${userid}"`
+    let user = await operateDB(_sql);
+    return user;
+};
+
 // 保存用户
 let addUserData = async (value) => {
     let _sql =  `insert into users(userid,username,password) values(?,?,?)`
@@ -26,7 +33,7 @@ let addUserData = async (value) => {
 
 //更新token
 let updateUserToken = async (value) => {
-    let _sql =  `update users set token=? where userid=?`
+    let _sql =  `update users set access_token=? where userid=?`
     let result = await operateDB(_sql,value);
     return result;   
 }
@@ -35,7 +42,8 @@ module.exports = {
     findUserByName,
     addUserData,
     updateUserToken,
-    findAllUser
+    findAllUser,
+    findUserById
 };
 
 
